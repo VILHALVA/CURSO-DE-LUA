@@ -1,0 +1,290 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://lightbulb-on.png" type="Texture" id=1]
+[ext_resource path="res://white.png" type="Texture" id=2]
+[ext_resource path="res://style_green.tres" type="StyleBox" id=3]
+[ext_resource path="res://style_red.tres" type="StyleBox" id=4]
+[ext_resource path="res://font_buttons.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Main.gd" type="Script" id=6]
+[ext_resource path="res://lightbulb-off.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://FONTH___.TTF"
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 1 )
+
+[node name="Main" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+theme_green = ExtResource( 3 )
+theme_red = ExtResource( 4 )
+light_on = ExtResource( 1 )
+light_off = ExtResource( 7 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 595.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 595.0
+alignment = 1
+
+[node name="VSplitContainer4" type="VSplitContainer" parent="Content"]
+margin_right = 1010.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label" type="Label" parent="Content"]
+margin_top = 14.0
+margin_right = 1010.0
+margin_bottom = 77.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
+text = "TESTES LÓGICOS
+Clique nos botões para inverter os valores."
+align = 1
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Content"]
+margin_top = 81.0
+margin_right = 1010.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="MainContent" type="HBoxContainer" parent="Content"]
+margin_top = 100.0
+margin_right = 1010.0
+margin_bottom = 526.0
+alignment = 1
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="Content/MainContent"]
+margin_right = 25.0
+margin_bottom = 426.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="NotContainer" type="CenterContainer" parent="Content/MainContent"]
+margin_left = 29.0
+margin_right = 97.0
+margin_bottom = 426.0
+
+[node name="Button" type="Button" parent="Content/MainContent/NotContainer"]
+margin_top = 192.0
+margin_right = 68.0
+margin_bottom = 234.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.537255, 0.54902, 0.537255, 1 )
+text = "NOT"
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="Content/MainContent"]
+margin_left = 101.0
+margin_right = 126.0
+margin_bottom = 426.0
+rect_min_size = Vector2( 25, 0 )
+split_offset = 25
+
+[node name="MainConditionPanel" type="Panel" parent="Content/MainContent"]
+margin_left = 130.0
+margin_right = 522.0
+margin_bottom = 426.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 3 )
+
+[node name="ConditionsContainer" type="CenterContainer" parent="Content/MainContent/MainConditionPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.0
+margin_top = -34.0
+margin_right = 42.0
+margin_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InnerContainer" type="VBoxContainer" parent="Content/MainContent/MainConditionPanel/ConditionsContainer"]
+margin_right = 220.0
+margin_bottom = 328.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstConditionPanel" type="Panel" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer"]
+margin_right = 220.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 220, 120 )
+custom_styles/panel = ExtResource( 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/FirstConditionPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -21.0
+margin_right = 96.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonNot" type="Button" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/FirstConditionPanel/HBoxContainer"]
+margin_right = 68.0
+margin_bottom = 42.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 5 )
+text = "NOT"
+
+[node name="ButtonBool" type="Button" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/FirstConditionPanel/HBoxContainer"]
+margin_left = 72.0
+margin_right = 192.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.984314, 0.380392, 0.380392, 1 )
+text = "TRUE"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer"]
+margin_top = 124.0
+margin_right = 220.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="AndContainer" type="CenterContainer" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer"]
+margin_top = 143.0
+margin_right = 220.0
+margin_bottom = 185.0
+
+[node name="ButtonAndOr" type="Button" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/AndContainer"]
+margin_left = 70.0
+margin_right = 150.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.360784, 0.905882, 0.945098, 1 )
+text = "AND"
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer"]
+margin_top = 189.0
+margin_right = 220.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="SecondConditionPanel" type="Panel" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer"]
+margin_top = 208.0
+margin_right = 220.0
+margin_bottom = 328.0
+rect_min_size = Vector2( 220, 120 )
+custom_styles/panel = ExtResource( 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/SecondConditionPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -21.0
+margin_right = 96.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonNot" type="Button" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/SecondConditionPanel/HBoxContainer"]
+margin_right = 68.0
+margin_bottom = 42.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 5 )
+text = "NOT"
+
+[node name="ButtonBool" type="Button" parent="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/SecondConditionPanel/HBoxContainer"]
+margin_left = 72.0
+margin_right = 192.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 5 )
+text = "TRUE"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Content/MainContent"]
+margin_left = 526.0
+margin_right = 551.0
+margin_bottom = 426.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="Light" type="TextureRect" parent="Content/MainContent"]
+margin_left = 555.0
+margin_right = 981.0
+margin_bottom = 426.0
+texture = ExtResource( 1 )
+
+[node name="HSplitContainer4" type="HSplitContainer" parent="Content/MainContent"]
+margin_left = 985.0
+margin_right = 1010.0
+margin_bottom = 426.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="Content"]
+margin_top = 530.0
+margin_right = 1010.0
+margin_bottom = 540.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label2" type="Label" parent="Content"]
+margin_top = 544.0
+margin_right = 1010.0
+margin_bottom = 574.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
+text = "youtube.com/CriaJogo"
+align = 1
+
+[node name="VSplitContainer3" type="VSplitContainer" parent="Content"]
+margin_top = 578.0
+margin_right = 1010.0
+margin_bottom = 588.0
+rect_min_size = Vector2( 0, 10 )
+[connection signal="pressed" from="Content/MainContent/NotContainer/Button" to="." method="_on_MainNot_pressed"]
+[connection signal="pressed" from="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/FirstConditionPanel/HBoxContainer/ButtonNot" to="." method="_on_FirstNot_pressed"]
+[connection signal="pressed" from="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/FirstConditionPanel/HBoxContainer/ButtonBool" to="." method="_on_FirstBool_pressed"]
+[connection signal="pressed" from="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/AndContainer/ButtonAndOr" to="." method="_on_ButtonAndOr_pressed"]
+[connection signal="pressed" from="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/SecondConditionPanel/HBoxContainer/ButtonNot" to="." method="_on_SecondNot_pressed"]
+[connection signal="pressed" from="Content/MainContent/MainConditionPanel/ConditionsContainer/InnerContainer/SecondConditionPanel/HBoxContainer/ButtonBool" to="." method="_on_SecondBool_pressed"]
