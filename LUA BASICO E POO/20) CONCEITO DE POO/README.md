@@ -1,22 +1,153 @@
-# CONCEITO DE POO (PROGRAMAÇÃO ORIENTADO A OBJETOS)
-A Programação Orientada a Objetos (POO ou OOP, em inglês) é um paradigma de programação que se baseia no conceito de "objetos" para modelar e resolver problemas de programação. Essa abordagem é amplamente utilizada em linguagens de programação como Java, Python, C++, C#, e também é suportada em Lua, embora Lua não seja uma linguagem estritamente orientada a objetos.
+# Os 4 Pilares da Programação Orientada a Objetos (POO)
+A Programação Orientada a Objetos (POO) é um paradigma de programação que utiliza objetos para representar e organizar os elementos do programa. Ela é baseada em quatro pilares fundamentais: Encapsulamento, Abstração, Herança e Polimorfismo. Neste artigo, exploraremos cada um desses pilares em detalhes, com exemplos em Lua.
 
-A seguir, estão os principais conceitos da POO:
+## 1. Encapsulamento
 
-1. **Objeto:** Um objeto é uma instância de uma classe. Ele representa uma entidade do mundo real com suas propriedades (atributos) e comportamentos (métodos). Por exemplo, um objeto pode representar um carro com atributos como cor, modelo e ano, e métodos como ligar e desligar.
+O encapsulamento é um conceito que se refere à proteção dos detalhes internos de um objeto, permitindo o acesso apenas aos elementos relevantes e necessários para o funcionamento do objeto. Em Lua, o encapsulamento pode ser alcançado usando tabelas e funções para controlar o acesso aos atributos de um objeto.
 
-2. **Classe:** Uma classe é um modelo ou plano que define a estrutura de um objeto. Ela descreve quais atributos e métodos os objetos dessa classe terão. Por exemplo, a classe "Carro" pode definir os atributos cor, modelo e ano, bem como os métodos ligar e desligar.
+### Exemplo de Encapsulamento em Lua:
 
-3. **Atributos:** Os atributos são características ou propriedades de um objeto. Eles representam o estado do objeto. No exemplo do carro, cor, modelo e ano são atributos.
+```lua
+-- Classe "Pessoa" com encapsulamento
+Pessoa = {}
 
-4. **Métodos:** Os métodos são funções ou operações que um objeto pode realizar. Eles definem o comportamento do objeto. No exemplo do carro, ligar e desligar são métodos.
+function Pessoa:novo(nome)
+    local objeto = {nome = nome}
 
-5. **Encapsulamento:** O encapsulamento é um conceito que se refere à combinação de dados (atributos) e métodos que operam nesses dados em uma única unidade, chamada de objeto. O encapsulamento permite ocultar detalhes internos e restringir o acesso direto aos dados, fornecendo métodos públicos para interagir com o objeto.
+    function objeto:getNome()
+        return self.nome
+    end
 
-6. **Herança:** A herança é um mecanismo que permite que uma classe (subclasse ou classe derivada) herde os atributos e métodos de outra classe (superclasse ou classe base). Isso promove a reutilização de código e permite criar hierarquias de classes.
+    function objeto:setNome(novoNome)
+        self.nome = novoNome
+    end
 
-7. **Polimorfismo:** O polimorfismo permite que objetos de diferentes classes respondam de maneira semelhante a chamadas de métodos comuns. Isso permite que você escreva código que funcione com objetos de várias classes sem conhecer a classe específica de cada objeto.
+    return objeto
+end
 
-8. **Abstração:** A abstração é o processo de simplificação de objetos do mundo real para seu modelo em programação. Ela se concentra nos aspectos mais relevantes do objeto, ignorando detalhes irrelevantes.
+local pessoa1 = Pessoa:novo("Alice")
+print(pessoa1:getNome())  -- Acesso ao nome através de método get
+pessoa1:setNome("Bob")     -- Acesso ao nome através de método set
+```
 
-A Programação Orientada a Objetos oferece muitos benefícios, como organização, reutilização de código, modularidade e facilidade de manutenção. Ela permite que os programadores criem sistemas mais flexíveis e adaptáveis, modelando o mundo real em termos de objetos e suas interações. Embora Lua não seja uma linguagem estritamente orientada a objetos, você pode aplicar conceitos de POO usando tabelas e funções para criar objetos e classes personalizados.
+Neste exemplo, os métodos `getNome()` e `setNome(novoNome)` permitem o acesso controlado ao atributo `nome`, implementando o encapsulamento.
+
+## 2. Abstração
+
+A abstração é o processo de simplificar complexidades desnecessárias e destacar apenas os aspectos relevantes de um objeto. Em Lua, a abstração é alcançada definindo classes abstratas com métodos que podem ser implementados por subclasses.
+
+### Exemplo de Abstração em Lua:
+
+```lua
+-- Classe abstrata "Veiculo" com método abstrato "acelerar"
+Veiculo = {}
+
+function Veiculo:novo()
+    local objeto = {}
+
+    function objeto:acelerar()
+        error("Método 'acelerar' deve ser implementado nas subclasses.")
+    end
+
+    return objeto
+end
+
+-- Subclasse "Carro" que herda de "Veiculo"
+Carro = Veiculo:novo()
+
+function Carro:acelerar()
+    print("Carro acelerando")
+end
+
+local meuCarro = Carro:novo()
+meuCarro:acelerar()  -- Chama o método da classe "Carro"
+```
+
+A classe `Veiculo` é abstrata, com um método `acelerar()` que deve ser implementado pelas subclasses. A classe `Carro` herda de `Veiculo` e implementa o método `acelerar()`, demonstrando a abstração.
+
+## 3. Herança
+
+A herança é um pilar que permite que uma classe (subclasse) herde atributos e métodos de outra classe (superclasse). Em Lua, a herança é alcançada definindo uma classe que herda de outra usando a função `setmetatable()`.
+
+### Exemplo de Herança em Lua:
+
+```lua
+-- Classe base "Animal"
+Animal = {}
+
+function Animal:novo(nome)
+    local objeto = {nome = nome}
+    setmetatable(objeto, self)
+    self.__index = self
+    return objeto
+end
+
+-- Subclasse "Cachorro" que herda de "Animal"
+Cachorro = Animal:novo("Cachorro")
+
+function Cachorro:latir()
+    print(self.nome .. " está latindo.")
+end
+
+-- Subclasse "Gato" que herda de "Animal"
+Gato = Animal:novo("Gato")
+
+function Gato:miau()
+    print(self.nome .. " está miando.")
+end
+
+local meuCachorro = Cachorro:novo("Rex")
+local meuGato = Gato:novo("Whiskers")
+
+meuCachorro:latir()  -- Chamada do método da classe "Cachorro"
+meuGato:miau()        -- Chamada do método da classe "Gato"
+```
+
+Neste exemplo, as classes `Cachorro` e `Gato` herdam atributos e métodos da classe base `Animal`, demonstrando o conceito de herança.
+
+## 4. Polimorfismo
+
+O polimorfismo é a capacidade de objetos de classes diferentes responderem ao mesmo método de maneiras diferentes. Em Lua, isso é alcançado chamando métodos com o mesmo nome em objetos de diferentes classes.
+
+### Exemplo de Polimorfismo em Lua:
+
+```lua
+-- Classe base "Animal"
+Animal = {}
+
+function Animal:novo(nome)
+    local objeto = {nome = nome}
+    setmetatable(objeto, self)
+    self.__index = self
+    return objeto
+end
+
+-- Subclasse "Cachorro" que herda de "Animal"
+Cachorro = Animal:novo("Cachorro")
+
+function Cachorro:falar()
+    return "Au Au!"
+end
+
+-- Subclasse "Gato" que herda de "Animal"
+Gato = Animal:novo("Gato")
+
+function Gato:falar()
+    return "Miau!"
+end
+
+-- Função polimórfica para fazer animais falarem
+function fazerAnimalFalar(animal)
+    print(animal.nome .. " diz: " .. animal:falar())
+end
+
+local rex = Cachorro:novo("Rex")
+local whiskers = Gato:novo("Whiskers")
+
+fazerAnimalFalar(rex)        -- Chamada do método da classe "Cachorro"
+fazerAnimalFalar(whiskers)   -- Chamada do método da classe "Gato"
+```
+
+Neste exemplo, a função `fazerAnimalFalar(animal)` usa polimorfismo para chamar o método `falar()` em instâncias de diferentes classes de animais, demonstrando como o mesmo método se comporta de maneira diferente em objetos de classes diferentes.
+
+Em resumo, os quatro pilares da POO (Encapsulamento, Abstração, Herança e Polimorfismo) são fundamentais para a criação de código orientado a objetos em Lua ou qualquer outra linguagem que suporte POO. Eles fornecem uma estrutura sólida para criar programas modularizados, reutilizáveis e eficazes.
