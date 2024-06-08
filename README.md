@@ -110,5 +110,6 @@ Essas características positivas fazem de Lua uma escolha atraente para uma vari
 - [CURSO CRIADO PELO "ALFRED BAUDISCH (PARDALL)"](https://www.youtube.com/playlist?list=PLqYboeh3Jru55Yq4J08zsBoOwwwjUtZNA)
 - [CURSO FEITO PELO VILHALVA](https://github.com/VILHALVA)
 - [VEJA A DOCUMENTAÇÃO](https://www.lua.org/docs.html)
+- [VEJA O MANUAL](./MANUAL.md)
 - [VEJA A SINTAXE](./SINTAXE.md)
 - [VEJA OS PROJETOS](https://github.com/VILHALVA?tab=repositories&q=topic:LUA)
