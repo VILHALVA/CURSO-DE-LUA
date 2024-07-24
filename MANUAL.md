@@ -79,5 +79,93 @@ print("Hello, World!")
 
 Você verá a mensagem `Hello, World!` impressa no terminal.
 
+
+Em Lua, a gestão de dependências e requisitos é tratada de maneira diferente em comparação com muitas outras linguagens de programação. Lua é uma linguagem bastante leve e minimalista, e sua biblioteca padrão não inclui um sistema de pacotes complexo. No entanto, há formas de gerenciar dependências e módulos, e o principal mecanismo para isso é o **LuaRocks**.
+
+## 4. MÓDULOS E REQUIRE:
+Lua usa a função `require` para carregar módulos e bibliotecas. Quando você usa `require`, o Lua procura um arquivo com o nome do módulo especificado e o executa, retornando o valor retornado pelo módulo.
+
+### EXEMPLO BÁSICO DE USO DE REQUIRE:
+Se você tiver um arquivo chamado `mymodule.lua`:
+
+```lua
+-- mymodule.lua
+local M = {}
+
+function M.say_hello()
+    print("Hello from mymodule!")
+end
+
+return M
+```
+
+Você pode carregá-lo e usá-lo em outro script:
+
+```lua
+-- main.lua
+local mymodule = require("mymodule")
+mymodule.say_hello()
+```
+
+### 2. LUAROCKS:
+**LuaRocks** é um gerenciador de pacotes para Lua que facilita a instalação e gerenciamento de módulos e bibliotecas. Ele permite que você baixe, instale e atualize pacotes Lua de maneira centralizada.
+
+#### INSTALAÇÃO DO LUAROCKS:
+1. **Baixar o LuaRocks:**
+   - Acesse [https://luarocks.org/](https://luarocks.org/) e baixe o instalador apropriado para o seu sistema.
+
+2. **Instalar o LuaRocks:**
+   - Siga as instruções do instalador.
+
+3. **Adicionar ao PATH:**
+   - Certifique-se de adicionar o diretório do LuaRocks ao PATH do sistema, se o instalador não o fez automaticamente.
+
+#### USANDO O LUAROCKS:
+1. **Instalar um Pacote:**
+   - No Prompt de Comando, use o comando `luarocks install <package-name>`. Por exemplo, para instalar o pacote `luasocket`, você usaria:
+     ```bash
+     luarocks install luasocket
+     ```
+
+2. **Listar Pacotes Instalados:**
+   - Use o comando `luarocks list` para ver todos os pacotes instalados.
+
+3. **Atualizar Pacotes:**
+   - Use o comando `luarocks update <package-name>` para atualizar um pacote específico.
+
+4. **Desinstalar Pacotes:**
+   - Use o comando `luarocks uninstall <package-name>` para remover um pacote.
+
+### EXEMPLO DE USO DE UM PACOTE INSTALADO:
+Se você instalar o pacote `luasocket`, você pode usá-lo em seu script Lua como este:
+
+```lua
+-- main.lua
+local socket = require("socket")
+
+local host = "www.google.com"
+local port = 80
+local connection = socket.tcp()
+
+connection:connect(host, port)
+print("Conectado a " .. host .. ":" .. port)
+
+connection:close()
+```
+
+### 3. GERENCIAMENTO DE DEPENDÊNCIAS MANUAL:
+Se você não estiver usando o LuaRocks, pode gerenciar dependências manualmente, baixando arquivos de módulos e colocando-os em diretórios específicos. Você pode usar o `package.path` para incluir diretórios adicionais onde Lua deve procurar por módulos.
+
+#### EXEMPLO DE AJUSTE DO `PACKAGE.PATH`:
+```lua
+-- main.lua
+package.path = package.path .. ";./libs/?.lua"
+
+local mymodule = require("mymodule")
+mymodule.say_hello()
+```
+
+Nesse exemplo, o Lua também procurará módulos na pasta `libs` localizada no mesmo diretório que o script.
+
 ## CONCLUSÃO:
 Agora você tem o interpretador Lua instalado e configurado, além de um ambiente de desenvolvimento Lua pronto com o Visual Studio Code. Você criou e executou seu primeiro projeto Lua. A partir daqui, você pode explorar mais sobre a linguagem Lua, bibliotecas e frameworks para expandir suas habilidades de programação.
