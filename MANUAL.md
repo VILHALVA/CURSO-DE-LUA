@@ -3,7 +3,7 @@
 Para desenvolver em Lua, você precisa instalar o interpretador Lua.
 
 ### WINDOWS:
-1. Acesse o [site oficial do Lua](https://www.lua.org/download.html).
+1. Acesse o [site oficial do Lua](https://luabinaries.sourceforge.net/download.html).
 2. Baixe a versão mais recente do binário do interpretador Lua para Windows (por exemplo, `lua-5.4.4_Win64_bin.zip`).
 3. Extraia o conteúdo do arquivo ZIP em um diretório de sua escolha (por exemplo, `C:\Lua`).
 4. Adicione o diretório ao PATH:
